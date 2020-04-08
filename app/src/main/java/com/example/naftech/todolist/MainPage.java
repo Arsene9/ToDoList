@@ -49,7 +49,7 @@ public class MainPage extends AppCompatActivity {
 
     private List<CheckListItem> itemList, deleteList, returnToList;
     private DatabaseManager dbMan;
-    private String mainPageName = "Home";//, currentParent = "None", parentOfParent = "";
+    private String mainPageName = "Home", listName = "";
     private CheckListItem currentParent;
 
     @Override
@@ -76,7 +76,8 @@ public class MainPage extends AppCompatActivity {
         addItemFB = findViewById(R.id.addItemFloatingActionButton);
         contextName = findViewById(R.id.parentNameTextView);
         if(addSubItem) {
-            contextName.setText("Sub Item Add");
+            listName = "Sub Item Add";
+            contextName.setText(listName);
             setCurrentParent(anIntent.getStringExtra("ParentName"),anIntent.getStringExtra("ppN"));
             updateReturnList(currentParent.getItemParent());
             messageToastDisplay("Please select the item you which to add a sub item to");
@@ -120,12 +121,6 @@ public class MainPage extends AppCompatActivity {
         stepBack = menu.findItem(R.id.oneStepBackReturnAction);
         cancelAction.setVisible(false);
         confirmDel.setVisible(false);
-
-//        if(currentParent.equals("None"))
-//            backHome.setVisible(false);
-//        else
-//            backHome.setVisible(true);
-
         return true;
     }
 
@@ -135,7 +130,8 @@ public class MainPage extends AppCompatActivity {
             showAddItemDialog();
         }
         else if(Item.getItemId() == R.id.deleteItemAction){
-            contextName.setText("Delete");
+            listName = "Delete";
+            contextName.setText(listName);
             addItemFB.setVisibility(View.INVISIBLE);
             addItem.setVisible(false);
             cancelAction.setVisible(true);
@@ -145,7 +141,8 @@ public class MainPage extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
         else if(Item.getItemId() == R.id.editItemAction){
-            contextName.setText("Edit Item");
+            listName = "Edit Item";
+            contextName.setText(listName);
             addItemFB.setVisibility(View.INVISIBLE);
             cancelAction.setVisible(true);
             addItem.setVisible(false);
@@ -167,16 +164,14 @@ public class MainPage extends AppCompatActivity {
             showAlertDialog();
         }
         else if(Item.getItemId() == R.id.returnToAction){
-            contextName.setText("Return Options");
+            listName = "Return Options";
+            contextName.setText(listName);
             addItemFB.setVisibility(View.GONE);
             checkListAdapter = new List_Adapter(this, R.id.itemCheckBox, returnToList, true);
             checkListView.setAdapter(checkListAdapter);
             checkListView.setOnItemClickListener(onItemClick);
         }
         else if(Item.getItemId() == R.id.resetAction){
-//            for(CheckListItem i : itemList){
-//                dbMan.modifyCheckListItemStatus(i.getItemParent(), i.getItemName(), "Incomplete");
-//            }
             for(CheckListItem i : itemList) {
                 if(!dbMan.resetCheckListItem(i)) {
                     messageToastDisplay("It didn't seem to have worked");
@@ -192,7 +187,20 @@ public class MainPage extends AppCompatActivity {
             copyDatabase("ToDoList.db");
         }
         else if(Item.getItemId() == stepBack.getItemId()){
-
+            for(int i = returnToList.size() - 1; i >= 0; i-- ){
+                if(currentParent.getItemName().equals(returnToList.get(i).getItemName())){
+                    if(i > 1){
+                        currentParent = returnToList.get(--i);
+                        contextName.setText(currentParent.getItemName());
+                        GenerateListView(currentParent.getItemParent(), null);
+                    }else{
+                        currentParent = returnToList.get(0);
+                        contextName.setText(mainPageName);
+                        GenerateListView(currentParent.getItemParent(), null);
+                    }
+                    addItemFB.setVisibility(View.VISIBLE);
+                }
+            }
         }
         else{
             setCurrentParent("None", "None");
@@ -214,12 +222,14 @@ public class MainPage extends AppCompatActivity {
 
                 if(deleteList.contains(itemList.get(position))) {
                     deleteList.remove(itemList.get(position));
-                    contextName.setText("Delete " + deleteList.size());
+                    listName = "Delete " + deleteList.size();
+                    contextName.setText(listName);
                     view.setBackgroundColor(Color.parseColor(unselectedCol));
                 }
                 else {
                     deleteList.add(itemList.get(position));
-                    contextName.setText("Delete " + deleteList.size());
+                    listName = "Delete " + deleteList.size();
+                    contextName.setText(listName);
                     view.setBackgroundColor(Color.parseColor(selectColor));
                 }
             }
@@ -335,12 +345,12 @@ public class MainPage extends AppCompatActivity {
 
     private String getPrevParent(CheckListItem tItem){
         String[] pLine = tItem.getItemParent().split(";");
-        String pL=pLine[0];
+        StringBuilder pL= new StringBuilder(pLine[0]);
         for(int i=1; i < pLine.length ; i++){
             if (!tItem.getItemName().equals(pLine[i]))
-                pL += ";" + pLine[i];
+                pL.append(";").append(pLine[i]);
         }
-        return pL;
+        return pL.toString();
     }
 
     private void showAddItemDialog(){
@@ -376,7 +386,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     private void showAlertDialog(){
-        AlertDialog alertDialog = new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this)
                 //set icon
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 //set title
@@ -441,16 +451,15 @@ public class MainPage extends AppCompatActivity {
             String parent = "";
             String[] genealogy = parentName.split(";");
             messageToastDisplay(genealogy[0] + " " + genealogy[1]);
-            for(int i=0; i<genealogy.length; i++) {
+            for (String s : genealogy) {
                 CheckListItem item = new CheckListItem();
-                if(genealogy[i].equals("None")){
-                    item.setItemName(genealogy[i]);
-                    item.setItemParent(genealogy[i]);
-                    parent = genealogy[i];
-                }
-                else {
-                    parent += ";" + genealogy[i];
-                    item.setItemName(genealogy[i]);
+                if (s.equals("None")) {
+                    item.setItemName(s);
+                    item.setItemParent(s);
+                    parent = s;
+                } else {
+                    parent += ";" + s;
+                    item.setItemName(s);
                     item.setItemParent(parent);
                 }
                 returnToList.add(item);

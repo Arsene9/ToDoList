@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="325dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.505">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="188dp"
+            android:layout_height="165dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="76dp"
+            android:layout_marginLeft="76dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="76dp"
+            android:layout_marginRight="76dp">
+
+            <RadioButton
+                android:id="@+id/newAddRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_new_item_to_list" />
+
+            <RadioButton
+                android:id="@+id/subAddRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_to_existing_item" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/answerCancelAddButton"
+            android:layout_width="121dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/radioGroup"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:text="@string/cancel" />
+
+        <Button
+            android:id="@+id/answerConfirmAddButton"
+            android:layout_width="121dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/radioGroup"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="9dp"
+            android:layout_weight="1"
+            android:text="@string/add" />
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

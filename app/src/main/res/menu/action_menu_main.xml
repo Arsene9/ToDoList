@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/oneStepBackReturnAction"
+        android:icon="@android:drawable/ic_menu_revert"
+        android:title="One Step Back"
+        app:showAsAction="always" />
+    <item android:title="Add Item"
+        app:showAsAction="never"
+        android:id="@+id/addItemAction" />
+    <item android:title="Delete Item"
+        app:showAsAction="never"
+        android:id="@+id/deleteItemAction"/>
+    <item android:title="Edit Item"
+        app:showAsAction="never"
+        android:id="@+id/editItemAction"/>
+    <item
+        android:id="@+id/confirmDeleteItemAction"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="CD Item"
+        app:showAsAction="always" />
+    <item android:title="Cancel"
+        app:showAsAction="always"
+        android:id="@+id/cancelAction"/>
+    <item android:title="Home"
+        app:showAsAction="always"
+        android:id="@+id/backHomeAction"/>
+    <item android:title="Return to"
+        app:showAsAction="never"
+        android:id="@+id/returnToAction"/>
+    <item android:id="@+id/resetAction"
+        app:showAsAction="never"
+        android:title="Reset"/>
+    <item android:title="Restore Data"
+        app:showAsAction="never"
+        android:id="@+id/restoreDataAction"/>
+    <item android:title="Backup Data"
+        app:showAsAction="never"
+        android:id="@+id/backupDataAction"/>
+</menu>

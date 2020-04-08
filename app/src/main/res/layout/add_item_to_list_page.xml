@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="652dp">
+
+                <Button
+                    android:id="@+id/cancelAddButton"
+                    android:layout_width="121dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@+id/radioGroup"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="44dp"
+                    android:layout_marginRight="44dp"
+                    android:layout_weight="1"
+                    android:text="@string/cancel"
+                    app:layout_constraintBottom_toBottomOf="@+id/confirmAddButton"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/priorityTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Priority"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/priorityEditText"
+                    app:layout_constraintStart_toStartOf="@+id/priorityEditText" />
+
+                <EditText
+                    android:id="@+id/dueTimeEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:ems="10"
+                    android:hint="HH:mm:ss"
+                    android:inputType="time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dueDateEditText" />
+
+                <TextView
+                    android:id="@+id/itemNameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:text="Item Name"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/itemNameEditText"
+                    app:layout_constraintStart_toStartOf="@+id/itemNameEditText" />
+
+                <Button
+                    android:id="@+id/confirmAddButton"
+                    android:layout_width="121dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@+id/radioGroup"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginLeft="52dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_weight="1"
+                    android:text="@string/add"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dueTimeEditText" />
+
+                <EditText
+                    android:id="@+id/dueDateEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:ems="10"
+                    android:hint="MM/dd/yyyy"
+                    android:inputType="date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/priorityEditText" />
+
+                <EditText
+                    android:id="@+id/itemNameEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="156dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:ems="10"
+                    android:hint="Item Name"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/dueTimeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Due Time"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/dueTimeEditText"
+                    app:layout_constraintStart_toStartOf="@+id/dueTimeEditText" />
+
+                <EditText
+                    android:id="@+id/priorityEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:ems="10"
+                    android:hint="1 or 2 or 3 etc"
+                    android:inputType="number"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/itemNameEditText"
+                    tools:text="1" />
+
+                <TextView
+                    android:id="@+id/dueDateTextView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Due Date"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/dueDateEditText"
+                    app:layout_constraintStart_toStartOf="@+id/dueDateEditText" />
+            </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

@@ -47,7 +47,7 @@ public class List_Adapter extends ArrayAdapter<CheckListItem> {
         if(item.getStatus().equals("Complete"))
             checked = true;
 
-        CheckBox listItem = (CheckBox) v.findViewById(R.id.itemCheckBox);
+        CheckBox listItem = v.findViewById(R.id.itemCheckBox);
 
         if(isReturnTo) {
             if(item.getItemName().equals("None"))

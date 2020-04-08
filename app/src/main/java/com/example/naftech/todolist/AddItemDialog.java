@@ -29,10 +29,10 @@ public class AddItemDialog extends DialogFragment implements View.OnClickListene
         pName = getArguments().getString("ParentName", "None");
         ppN = getArguments().getString("ppN", "None");
 
-        confirmAdd = (Button) addItemDialog.findViewById(R.id.answerConfirmAddButton);
-        cancelAdd = (Button) addItemDialog.findViewById(R.id.answerCancelAddButton);
-        newItem = (RadioButton) addItemDialog.findViewById(R.id.newAddRadioButton);
-        subItem = (RadioButton) addItemDialog.findViewById(R.id.subAddRadioButton);
+        confirmAdd = addItemDialog.findViewById(R.id.answerConfirmAddButton);
+        cancelAdd = addItemDialog.findViewById(R.id.answerCancelAddButton);
+        newItem = addItemDialog.findViewById(R.id.newAddRadioButton);
+        subItem = addItemDialog.findViewById(R.id.subAddRadioButton);
 
         //Toast.makeText(getActivity(), pName, Toast.LENGTH_LONG).show();
 

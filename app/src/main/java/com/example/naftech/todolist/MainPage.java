@@ -69,12 +69,12 @@ public class MainPage extends AppCompatActivity {
         boolean addSubItem = anIntent.getBooleanExtra("Add a sub item", false);
         boolean newParent = anIntent.getBooleanExtra("NewParent", false);
 
-        checkListViewStub = (ViewStub) findViewById(R.id.checkListViewStub);
+        checkListViewStub = findViewById(R.id.checkListViewStub);
         checkListViewStub.inflate();
         checkListViewStub.canScrollVertically(1);
-        checkListView = (ListView) findViewById(R.id.checkListViewList);
-        addItemFB = (FloatingActionButton) findViewById(R.id.addItemFloatingActionButton);
-        contextName = (TextView) findViewById(R.id.parentNameTextView);
+        checkListView = findViewById(R.id.checkListViewList);
+        addItemFB = findViewById(R.id.addItemFloatingActionButton);
+        contextName = findViewById(R.id.parentNameTextView);
         if(addSubItem) {
             contextName.setText("Sub Item Add");
             setCurrentParent(anIntent.getStringExtra("ParentName"),anIntent.getStringExtra("ppN"));
@@ -91,7 +91,7 @@ public class MainPage extends AppCompatActivity {
             updateReturnList(currentParent.getItemParent());
             contextName.setText(mainPageName);
         }
-        toolbar = (Toolbar) findViewById(R.id.contextToolbar);
+        toolbar = findViewById(R.id.contextToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
 
@@ -170,10 +170,10 @@ public class MainPage extends AppCompatActivity {
             contextName.setText("Return Options");
             addItemFB.setVisibility(View.GONE);
             checkListAdapter = new List_Adapter(this, R.id.itemCheckBox, returnToList, true);
-            checkListView.setAdapter((ListAdapter) checkListAdapter);
+            checkListView.setAdapter(checkListAdapter);
             checkListView.setOnItemClickListener(onItemClick);
         }
-        else if(Item.getItemId() == restoreData.getItemId()){//R.id.resetAction){
+        else if(Item.getItemId() == R.id.resetAction){
 //            for(CheckListItem i : itemList){
 //                dbMan.modifyCheckListItemStatus(i.getItemParent(), i.getItemName(), "Incomplete");
 //            }
@@ -271,7 +271,7 @@ public class MainPage extends AppCompatActivity {
                                 String completedP = currentParent.getItemName();
                                 for(CheckListItem i : returnToList){
                                     if(i.getItemParent().equals(currentParent.getItemParent())) {
-                                        currentParent = returnToList.get(returnToList.indexOf(i) - 1);;
+                                        currentParent = returnToList.get(returnToList.indexOf(i) - 1);
                                         break;
                                     }
                                 }
@@ -408,7 +408,7 @@ public class MainPage extends AppCompatActivity {
         itemList.clear();
         itemList.addAll(GenerateItemList(parent,orderBy));
         checkListAdapter = new List_Adapter(this, R.id.itemCheckBox,itemList, false);
-        checkListView.setAdapter((ListAdapter) checkListAdapter);
+        checkListView.setAdapter(checkListAdapter);
         checkListView.setOnItemClickListener(onItemClick);
     }
 

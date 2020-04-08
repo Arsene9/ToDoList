@@ -66,14 +66,14 @@ public class EditItemPage extends AppCompatActivity {
         //trgItem = new CheckListItem(dbMan.getACheckListItem(iName));
         //messageToastDisplay(EditItemPage.this, dbMan.getACheckListItem(iName).getItemName());
 
-        itemName = (EditText) findViewById(R.id.itemNameEditText);
-        prentName = (EditText) findViewById(R.id.parentNameEditText);
-        priority = (EditText) findViewById(R.id.priorityEditText);
-        dueDate = (EditText) findViewById(R.id.dueDateEditText);
-        dueTime = (EditText) findViewById(R.id.dueTimeEditText);
-        confirmEdit = (Button) findViewById(R.id.editConfirmButton);
-        cancelEdit = (Button) findViewById(R.id.cancelEditButton);
-        contextName = (TextView) findViewById(R.id.parentNameTextView2);
+        itemName = findViewById(R.id.itemNameEditText);
+        prentName = findViewById(R.id.parentNameEditText);
+        priority = findViewById(R.id.priorityEditText);
+        dueDate = findViewById(R.id.dueDateEditText);
+        dueTime = findViewById(R.id.dueTimeEditText);
+        confirmEdit = findViewById(R.id.editConfirmButton);
+        cancelEdit = findViewById(R.id.cancelEditButton);
+        contextName = findViewById(R.id.parentNameTextView2);
 
         if(trgItem != null) {
             contextName.setText("Edit " + iName);
@@ -156,8 +156,8 @@ public class EditItemPage extends AppCompatActivity {
                 dbMan.modifyCheckListItemName(trgItem, itemName.getText().toString());
 //            if(!trgItem.getItemParent().equals(prentName.getText().toString()))
 //                dbMan.modifyCheckListItemParent(trgItem, prentName.getText().toString());
-            else if(!String.valueOf(trgItem.getPriority()).equals(String.valueOf(priority.getText().toString())))
-                dbMan.modifyCheckListItemPriority(trgItem, String.valueOf(priority.getText().toString()));
+            else if(!String.valueOf(trgItem.getPriority()).equals(priority.getText().toString()))
+                dbMan.modifyCheckListItemPriority(trgItem, priority.getText().toString());
             else if(!trgItem.getDueDate().equals(fullDueDate))
                 dbMan.modifyCheckListItemDueDate(trgItem, fullDueDate);
 

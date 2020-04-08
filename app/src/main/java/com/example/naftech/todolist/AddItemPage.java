@@ -50,12 +50,12 @@ public class AddItemPage extends AppCompatActivity {
         if(parentName.equals(""))
             parentName = "None";
 
-        itemName = (EditText) findViewById(R.id.itemNameEditText);
-        priority = (EditText) findViewById(R.id.priorityEditText);
-        dueDate = (EditText) findViewById(R.id.dueDateEditText);
-        dueTime = (EditText) findViewById(R.id.dueTimeEditText);
-        confirmAdd = (Button) findViewById(R.id.confirmAddButton);
-        cancelAdd = (Button) findViewById(R.id.cancelAddButton);
+        itemName = findViewById(R.id.itemNameEditText);
+        priority = findViewById(R.id.priorityEditText);
+        dueDate = findViewById(R.id.dueDateEditText);
+        dueTime = findViewById(R.id.dueTimeEditText);
+        confirmAdd = findViewById(R.id.confirmAddButton);
+        cancelAdd = findViewById(R.id.cancelAddButton);
 
         confirmAdd.setOnClickListener(onAddButtonClick);
         cancelAdd.setOnClickListener(onCancelButtonClick);

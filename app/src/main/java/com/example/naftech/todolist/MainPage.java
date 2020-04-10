@@ -22,6 +22,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -44,10 +46,12 @@ public class MainPage extends AppCompatActivity {
     private List_Adapter checkListAdapter;
     private FloatingActionButton addItemFB;
     private Toolbar toolbar;
-    private TextView contextName;
+    private TextView contextName, orderbyTextView;
+    private AutoCompleteTextView orderbyOptions;
     private MenuItem addItem, cancelAction, confirmDel, backHome, backupData, restoreData, stepBack;
 
     private List<CheckListItem> itemList, deleteList, returnToList;
+    private final String[] orderbyList = {"Entry Order", "Item Name", "Priority Number", "Completion Status", "Due Date"};
     private DatabaseManager dbMan;
     private String mainPageName = "Home", listName = "";
     private CheckListItem currentParent;
@@ -75,6 +79,9 @@ public class MainPage extends AppCompatActivity {
         checkListView = findViewById(R.id.checkListViewList);
         addItemFB = findViewById(R.id.addItemFloatingActionButton);
         contextName = findViewById(R.id.parentNameTextView);
+        orderbyTextView = findViewById(R.id.orderbyTextView);
+        orderbyOptions = findViewById(R.id.orderbyAutoCompleteTextView);
+
         if(addSubItem) {
             listName = "Sub Item Add";
             contextName.setText(listName);
@@ -105,6 +112,15 @@ public class MainPage extends AppCompatActivity {
         }
         //messageToastDisplay(currentParent.getItemParent());
 
+        orderbyOptions.setOnClickListener(onOrderbyClick);
+        orderbyOptions.setOnItemClickListener(onOderbyItemClick);
+
+        ArrayAdapter<String> orderlist = new ArrayAdapter<String>(this,
+                R.layout.support_simple_spinner_dropdown_item, orderbyList);
+
+        orderbyOptions.setAdapter(orderlist); //Attaches the dropdown list to AutocompleteTextView
+        orderbyOptions.setThreshold(0);
+        orderbyOptions.setDropDownWidth(400);
     }
 
     //*************************************   Menu setup  ******************************************
@@ -329,11 +345,34 @@ public class MainPage extends AppCompatActivity {
             }
         }
     };
+
     //Add Item floating button click listener
     private FloatingActionButton.OnClickListener onAddItemClick = new FloatingActionButton.OnClickListener(){
         @Override
         public void onClick(View view) {
             showAddItemDialog();
+        }
+    };
+
+    private AutoCompleteTextView.OnClickListener onOrderbyClick = new AutoCompleteTextView.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            orderbyOptions.showDropDown();
+        }
+    };
+
+    private AdapterView.OnItemClickListener onOderbyItemClick = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            messageToastDisplay(position + currentParent.getItemParent());
+            switch(position){
+                case 1  : GenerateListView(currentParent.getItemParent(), "ItemName"); break;
+                case 2  : GenerateListView(currentParent.getItemParent(), "Priority"); break;
+                case 3  : GenerateListView(currentParent.getItemParent(), "Status"); break;
+                case 4  : GenerateListView(currentParent.getItemParent(), "DueDate"); break;
+                default : GenerateListView(currentParent.getItemParent(), null); break;
+            }
         }
     };
 

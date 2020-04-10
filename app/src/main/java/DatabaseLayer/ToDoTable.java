@@ -190,8 +190,8 @@ public class ToDoTable {
         if(oB == null || oB == ""){
             oB = COLUMN_ITEM_ID;
         }
-        Cursor items = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ITEM_PARENT +
-                "= ? Order by ?",new String[]{pIN, oB});
+        Cursor items = db.query(TABLE_NAME,null, COLUMN_ITEM_PARENT+"= ?", new String[]{pIN}, null, null,
+                oB+" ASC");
         List<CheckListItem> cLI = new ArrayList<>();
 
         try{

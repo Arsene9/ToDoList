@@ -11,17 +11,39 @@
         android:id="@+id/contextToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/orderbyTextView"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Order By"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/orderbyAutoCompleteTextView"
+        app:layout_constraintEnd_toStartOf="@+id/orderbyAutoCompleteTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contextToolbar"
+        app:layout_constraintVertical_bias="0.111" />
+
+    <AutoCompleteTextView
+        android:id="@+id/orderbyAutoCompleteTextView"
+        android:layout_width="280dp"
+        android:layout_height="42dp"
+        android:text="Entry"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/orderbyTextView"
+        app:layout_constraintTop_toBottomOf="@+id/contextToolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contextToolbar"
+        app:layout_constraintTop_toBottomOf="@+id/orderbyAutoCompleteTextView"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout

@@ -1,7 +1,7 @@
 package com.example.naftech.todolist;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +21,7 @@ import DatabaseLayer.DatabaseManager;
 public class List_Adapter extends ArrayAdapter<CheckListItem> {
 
     private CheckListItem item;
-    private boolean isReturnTo;
+    private final boolean isReturnTo;
 
 
     public List_Adapter(@NonNull Context context, int resource, @NonNull List<CheckListItem> objects, boolean isReturnTo) {

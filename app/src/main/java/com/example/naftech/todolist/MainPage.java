@@ -1,7 +1,7 @@
 package com.example.naftech.todolist;
 
 import android.app.AlertDialog;
-import android.app.FragmentManager;
+import androidx.fragment.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,11 +10,11 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.CalendarContract;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.RequiresApi;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -53,7 +53,8 @@ public class MainPage extends AppCompatActivity {
     private List<CheckListItem> itemList, deleteList, returnToList;
     private final String[] orderbyList = {"Entry Order", "Item Name", "Priority Number", "Completion Status", "Due Date"};
     private DatabaseManager dbMan;
-    private String mainPageName = "Home", listName = "";
+    private final String mainPageName = "Home";
+    private String listName = "";
     private CheckListItem currentParent;
 
     @Override
@@ -116,7 +117,7 @@ public class MainPage extends AppCompatActivity {
         orderbyOptions.setOnItemClickListener(onOderbyItemClick);
 
         ArrayAdapter<String> orderlist = new ArrayAdapter<String>(this,
-                R.layout.support_simple_spinner_dropdown_item, orderbyList);
+                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, orderbyList);
 
         orderbyOptions.setAdapter(orderlist); //Attaches the dropdown list to AutocompleteTextView
         orderbyOptions.setThreshold(0);
@@ -228,7 +229,7 @@ public class MainPage extends AppCompatActivity {
     }
     //******************************   On Click Listeners setup  ***********************************
     // On Item click listener
-    private AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
+    private final AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -262,6 +263,7 @@ public class MainPage extends AppCompatActivity {
                 addItem.putExtra("ppN", itemList.get(position).getItemParent()
                         + ";" + itemList.get(position).getItemName());
                 startActivity(addItem);
+                finish();
             }
             else if (contextName.getText().equals("Return Options")){
                 currentParent = returnToList.get(position);
@@ -347,14 +349,14 @@ public class MainPage extends AppCompatActivity {
     };
 
     //Add Item floating button click listener
-    private FloatingActionButton.OnClickListener onAddItemClick = new FloatingActionButton.OnClickListener(){
+    private final FloatingActionButton.OnClickListener onAddItemClick = new FloatingActionButton.OnClickListener(){
         @Override
         public void onClick(View view) {
             showAddItemDialog();
         }
     };
 
-    private AutoCompleteTextView.OnClickListener onOrderbyClick = new AutoCompleteTextView.OnClickListener(){
+    private final AutoCompleteTextView.OnClickListener onOrderbyClick = new AutoCompleteTextView.OnClickListener(){
 
         @Override
         public void onClick(View v) {
@@ -362,7 +364,7 @@ public class MainPage extends AppCompatActivity {
         }
     };
 
-    private AdapterView.OnItemClickListener onOderbyItemClick = new AdapterView.OnItemClickListener() {
+    private final AdapterView.OnItemClickListener onOderbyItemClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             messageToastDisplay(position + currentParent.getItemParent());
@@ -393,7 +395,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     private void showAddItemDialog(){
-        FragmentManager fManager = getFragmentManager();
+        FragmentManager fManager = getSupportFragmentManager();
         Bundle args = new Bundle();
         args.putCharSequence("ParentName", currentParent.getItemName());
         args.putCharSequence("ppN", currentParent.getItemParent());

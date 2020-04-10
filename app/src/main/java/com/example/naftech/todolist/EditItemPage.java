@@ -5,7 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -100,7 +100,7 @@ public class EditItemPage extends AppCompatActivity {
         dueTime.setOnClickListener(onDueTimeEditTextClick);
     }
 
-    private EditText.OnClickListener onDueTimeEditTextClick = new EditText.OnClickListener() {
+    private final EditText.OnClickListener onDueTimeEditTextClick = new EditText.OnClickListener() {
         @Override
         public void onClick(View view) {
             calendar = Calendar.getInstance();
@@ -112,14 +112,14 @@ public class EditItemPage extends AppCompatActivity {
         }
     };
 
-    private TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+    private final TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(TimePicker timePicker, int dHour, int dMin) {
             dueTime.setText(dHour + ":" + dMin + ":00");
         }
     };
 
-    private EditText.OnClickListener onDueDateEditTextClick = new EditText.OnClickListener() {
+    private final EditText.OnClickListener onDueDateEditTextClick = new EditText.OnClickListener() {
         @Override
         public void onClick(View view) {
             calendar = Calendar.getInstance();
@@ -132,14 +132,14 @@ public class EditItemPage extends AppCompatActivity {
         }
     };
 
-    private DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+    private final DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int dYear, int dMonth, int dDay) {
             dueDate.setText((dMonth+1) + "/" + dDay + "/" + dYear);
         }
     };
 
-    private Button.OnClickListener onEditButtonClick = new View.OnClickListener() {
+    private final Button.OnClickListener onEditButtonClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             fullDueDate = dueDate.getText().toString() + " " + dueTime.getText().toString();
@@ -173,7 +173,7 @@ public class EditItemPage extends AppCompatActivity {
         }
     };
 
-    private Button.OnClickListener onCancelButtonClick = new View.OnClickListener() {
+    private final Button.OnClickListener onCancelButtonClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 //            Intent welcomePg = new Intent(getApplicationContext(), MainPage.class);
